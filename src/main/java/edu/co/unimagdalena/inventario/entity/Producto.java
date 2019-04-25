@@ -10,28 +10,30 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="producto")
 public class Producto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	@Column
 	private String nombre;
 	@Column
 	private int precio;
 	@Column
 	private int cantidad;
-	
+
+	@JsonIgnore
 	@OneToMany(mappedBy = "producto")
 	private List<Detalle> detalles;
 
-	
 	public Producto() {
 		super();
 	}
 	
-	public Producto(long id, String nombre, int precio, int cantidad, List<Detalle> detalles) {
+	public Producto(Long id, String nombre, int precio, int cantidad, List<Detalle> detalles) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -40,11 +42,11 @@ public class Producto {
 		this.detalles = detalles;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

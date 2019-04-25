@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-04-2019 a las 23:56:39
+-- Tiempo de generación: 25-04-2019 a las 02:38:46
 -- Versión del servidor: 10.1.29-MariaDB
 -- Versión de PHP: 7.1.12
 
@@ -33,6 +33,13 @@ CREATE TABLE `compra` (
   `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `compra`
+--
+
+INSERT INTO `compra` (`id`, `fecha`) VALUES
+(2, '2019-04-26');
+
 -- --------------------------------------------------------
 
 --
@@ -43,8 +50,35 @@ CREATE TABLE `detalle` (
   `id` int(11) NOT NULL,
   `compra` int(10) NOT NULL,
   `producto` int(10) NOT NULL,
-  `cantidad` int(20) NOT NULL
+  `cantidad` int(20) NOT NULL,
+  `cliente` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `detalle`
+--
+
+INSERT INTO `detalle` (`id`, `compra`, `producto`, `cantidad`, `cliente`) VALUES
+(1, 2, 1, 2, 'Carlos');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `hibernate_sequence`
+--
+
+CREATE TABLE `hibernate_sequence` (
+  `next_val` bigint(20) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `hibernate_sequence`
+--
+
+INSERT INTO `hibernate_sequence` (`next_val`) VALUES
+(1),
+(1),
+(1);
 
 -- --------------------------------------------------------
 
@@ -58,6 +92,24 @@ CREATE TABLE `producto` (
   `precio` int(20) NOT NULL,
   `cantidad` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`id`, `nombre`, `precio`, `cantidad`) VALUES
+(1, 'Llanta', 50000, 10);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `producto_detalles`
+--
+
+CREATE TABLE `producto_detalles` (
+  `producto_id` bigint(20) NOT NULL,
+  `detalles_id` bigint(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Índices para tablas volcadas
@@ -84,6 +136,13 @@ ALTER TABLE `producto`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `producto_detalles`
+--
+ALTER TABLE `producto_detalles`
+  ADD UNIQUE KEY `UK_ohbv9hktdu53wejq5k2js8e4v` (`detalles_id`),
+  ADD KEY `FKg5es2f9ntu7eoldvryyt20f5w` (`producto_id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -91,19 +150,19 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `compra`
 --
 ALTER TABLE `compra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle`
 --
 ALTER TABLE `detalle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas

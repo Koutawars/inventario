@@ -9,23 +9,31 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="detalle")
 public class Detalle {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+
+	@Column
+	private String cliente;
 	
+	@Column
+	private int cantidad;
+	
+	@JsonIgnoreProperties("detalles")
 	@ManyToOne
 	@JoinColumn(name = "producto")
 	private Producto producto;
 
+	@JsonIgnoreProperties("detalles")
 	@ManyToOne
 	@JoinColumn(name = "compra")
 	private Compra compra;
 	
-	@Column
-	private int cantidad;
 
 	public Detalle() {
 		super();
