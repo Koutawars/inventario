@@ -11,7 +11,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties("hibernateLazyInitializer")
 @Entity
 @Table(name="producto")
 public class Producto {

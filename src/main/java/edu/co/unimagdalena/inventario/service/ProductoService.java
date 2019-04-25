@@ -17,8 +17,20 @@ public class ProductoService {
 		return (List<Producto>) repository.findAll();
 	}
 	
-	public Producto getProducto(long id) {
+	public Producto getProducto(Long id) {
 		return repository.getOne(id);
+	}
+	
+	public Producto createProducto(Producto producto) {
+		return repository.save(producto);
+	}
+	
+	public Producto updateProducto(Producto producto) {
+		return repository.save(producto);
+	}
+	
+	public void deleteProducto(Long id) {
+		repository.deleteById(id);
 	}
 	
 }
