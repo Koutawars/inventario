@@ -16,11 +16,17 @@ $(document).ready(function(){
 		}
 	});
 	
+	  $("#search").on("keyup", function() {
+	    var value = $(this).val().toLowerCase();
+	    $("#tablaProductos tr").filter(function() {
+	      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+	    });
+	  });
 	 $('#agregar').click(function(e){
 		  e.preventDefault();
 		  let nombre = $('#nombre').val();
-		  let precio = $('#precio').val();
-		  let cantidad = $('#cantidad').val();
+		  let precio = parseInt($('#precio').val());
+		  let cantidad = parseInt($('#cantidad').val());
 		  if(nombre != '' && precio != '' && cantidad != ''){
 			  M.toast({html: 'Agregando...'});
 			  // ajax request

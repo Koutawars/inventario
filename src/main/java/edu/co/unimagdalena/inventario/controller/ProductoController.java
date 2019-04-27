@@ -1,6 +1,7 @@
 package edu.co.unimagdalena.inventario.controller;
 
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,13 @@ public class ProductoController {
 	@RequestMapping
 	public ResponseEntity<List<Producto>> getProductos() {
 		List<Producto> response =  service.getAllProductos();
+		return new ResponseEntity<List<Producto>>(response, HttpStatus.OK);
+	}
+	
+	@RequestMapping("/buscar")
+	public ResponseEntity<List<Producto>> searchByNameProducto(@RequestBody(required=false) String nombre){
+		List<Producto> response = new ArrayList<Producto>();
+		if(nombre != null) response = service.getProductoByName(nombre);
 		return new ResponseEntity<List<Producto>>(response, HttpStatus.OK);
 	}
 	

@@ -17,6 +17,10 @@ public class ProductoService {
 		return (List<Producto>) repository.findAll();
 	}
 	
+	public List<Producto> getProductoByName(String nombre){
+		return repository.findByNombreContaining(nombre);
+	}
+	
 	public Producto getProducto(Long id) {
 		return repository.getOne(id);
 	}
