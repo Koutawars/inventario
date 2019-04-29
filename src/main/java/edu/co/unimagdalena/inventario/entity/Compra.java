@@ -26,6 +26,12 @@ public class Compra {
 	@Column
 	@Temporal(TemporalType.DATE)
 	Date fecha;
+	
+	@Column
+	String cliente;
+	
+	@Column
+	private long total;
 
 	@JsonIgnoreProperties("compra")
 	@OneToMany(mappedBy = "compra")
@@ -35,11 +41,22 @@ public class Compra {
 		super();
 	}
 
-	public Compra(long id, Date fecha, List<Detalle> detalles) {
+	public Compra(long id, Date fecha, String cliente, long total, List<Detalle> detalles) {
 		super();
 		this.id = id;
 		this.fecha = fecha;
+		this.total = total;
+		this.cliente = cliente;
 		this.detalles = detalles;
+	}
+
+	
+	public String getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(String cliente) {
+		this.cliente = cliente;
 	}
 
 	public long getId() {

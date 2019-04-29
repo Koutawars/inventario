@@ -17,9 +17,6 @@ public class Detalle {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-
-	@Column
-	private String cliente;
 	
 	@Column
 	private int cantidad;

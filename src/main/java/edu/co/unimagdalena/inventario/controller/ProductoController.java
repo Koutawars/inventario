@@ -28,7 +28,7 @@ public class ProductoController {
 		return new ResponseEntity<List<Producto>>(response, HttpStatus.OK);
 	}
 	
-	@RequestMapping("/buscar")
+	@RequestMapping(method=RequestMethod.POST, value="/buscar")
 	public ResponseEntity<List<Producto>> searchByNameProducto(@RequestBody(required=false) String nombre){
 		List<Producto> response = new ArrayList<Producto>();
 		if(nombre != null) response = service.getProductoByName(nombre);
@@ -40,7 +40,7 @@ public class ProductoController {
 		Producto response = service.getProducto(id);
 		return new ResponseEntity<Producto>(response, HttpStatus.OK);
 	}
-	
+		
 	@RequestMapping(method=RequestMethod.POST, value = "/add")
 	public ResponseEntity<Producto> addEstudiante(@RequestBody Producto producto) throws SQLIntegrityConstraintViolationException {
 		Producto response;

@@ -1,0 +1,17 @@
+td, th {
+    padding: 7px 5px !important;
+}
+.btn-add{
+	cursor:pointer;
+	color:#27ae60;
+}
+
+.btn-del{
+	cursor:pointer;
+	color:#e74c3c;
+}
+
+
+table#tablaBuscar {
+    margin-bottom: 15px!important;
+}

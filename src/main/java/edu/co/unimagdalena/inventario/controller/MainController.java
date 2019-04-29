@@ -12,12 +12,12 @@ public class MainController {
 	}
 	
 	@RequestMapping("/inventario")
-	String getInventario() {
+	String getInventarioView() {
 		return "inventario";
 	}
 	
 	@RequestMapping("/compra")
-	String getCompra() {
+	String getCompraView() {
 		return "compra";
 	}
 }
