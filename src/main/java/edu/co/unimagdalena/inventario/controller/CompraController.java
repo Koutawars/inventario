@@ -30,6 +30,7 @@ public class CompraController {
 	@RequestMapping(method=RequestMethod.POST, value = "/add")
 	public ResponseEntity<Compra> addCompra(@RequestBody Compra compra) throws SQLIntegrityConstraintViolationException {
 		Compra response;
+		System.out.print(compra.toString());
 		try {
 			response = service.createCompra(compra);
 		}catch(Exception e) {

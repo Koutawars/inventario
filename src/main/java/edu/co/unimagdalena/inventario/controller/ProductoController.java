@@ -42,7 +42,7 @@ public class ProductoController {
 	}
 		
 	@RequestMapping(method=RequestMethod.POST, value = "/add")
-	public ResponseEntity<Producto> addEstudiante(@RequestBody Producto producto) throws SQLIntegrityConstraintViolationException {
+	public ResponseEntity<Producto> addProducto(@RequestBody Producto producto) throws SQLIntegrityConstraintViolationException {
 		Producto response;
 		try {
 			response = service.createProducto(producto);

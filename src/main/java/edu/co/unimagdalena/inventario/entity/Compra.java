@@ -1,6 +1,5 @@
 package edu.co.unimagdalena.inventario.entity;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,8 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -24,8 +21,8 @@ public class Compra {
 	private long id;
 
 	@Column
-	@Temporal(TemporalType.DATE)
-	Date fecha;
+	String fecha;
+	
 	
 	@Column
 	String cliente;
@@ -41,23 +38,21 @@ public class Compra {
 		super();
 	}
 
-	public Compra(long id, Date fecha, String cliente, long total, List<Detalle> detalles) {
+	@Override
+	public String toString() {
+		return "Compra [fecha=" + fecha + ", cliente=" + cliente + ", total=" + total + ", detalles=" + detalles + "]";
+	}
+
+	public Compra(long id, String fecha, String cliente, long total, List<Detalle> detalles) {
 		super();
 		this.id = id;
 		this.fecha = fecha;
-		this.total = total;
 		this.cliente = cliente;
+		this.total = total;
 		this.detalles = detalles;
 	}
 
-	
-	public String getCliente() {
-		return cliente;
-	}
 
-	public void setCliente(String cliente) {
-		this.cliente = cliente;
-	}
 
 	public long getId() {
 		return id;
@@ -67,12 +62,28 @@ public class Compra {
 		this.id = id;
 	}
 
-	public Date getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
+	}
+
+	public String getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(String cliente) {
+		this.cliente = cliente;
+	}
+
+	public long getTotal() {
+		return total;
+	}
+
+	public void setTotal(long total) {
+		this.total = total;
 	}
 
 	public List<Detalle> getDetalles() {
@@ -82,6 +93,8 @@ public class Compra {
 	public void setDetalles(List<Detalle> detalles) {
 		this.detalles = detalles;
 	}
+
+	
 	
 	
 }
