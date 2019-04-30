@@ -43,6 +43,8 @@ $(document).ready(function(){
 	$("#comprar").click(function(e){
 		if(carro.length == 0){
 			  M.toast({html: 'Carro de compra vacío.'});
+		}else if($("#cliente").val() == ""){
+			  M.toast({html: 'Nombre de cliente.'});
 		}else{
 			let cliente = $("#cliente").val();
 			let fecha = new Date().toJSON().slice(0,10).replace(/-/g,'/');
@@ -53,7 +55,7 @@ $(document).ready(function(){
 					total,
 					detalle:null
 			};
-			console.log({compra});
+			
 			$.ajax({
 				method: "POST",
 				url: "comprar/add",
