@@ -81,7 +81,8 @@ $(document).ready(function(){
 							});
 						});
 					});
-					window.location.href = "/factura/"+compra.id;
+					setTimeout(function(){ window.location.href = "/factura/"+compra.id; }, 250);
+					
 				},
 				error: function( jqXHR, textStatus, errorThrown ){
 					console.log(jqXHR);
