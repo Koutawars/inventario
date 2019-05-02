@@ -15,3 +15,8 @@ td, th {
 table#tablaBuscar {
     margin-bottom: 15px!important;
 }
+
+.btn-save{
+	margin-top: 20px;
+	cursor:pointer;
+}

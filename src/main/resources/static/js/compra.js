@@ -82,7 +82,6 @@ $(document).ready(function(){
 						});
 					});
 					setTimeout(function(){ window.location.href = "/factura/"+compra.id; }, 250);
-					
 				},
 				error: function( jqXHR, textStatus, errorThrown ){
 					console.log(jqXHR);
@@ -114,10 +113,37 @@ function agregarTablaBuscar(producto){
 			<tr name="${id}">
 				<td>${nombre}</td>
 				<td>${precio}</td>
-				<td>${cantidad}</td>
+				<td>${cantidad} <i id="edit${id}" class="blue-text right small material-icons modal-trigger btn-del">edit</i></td>
 				<td><i id="del${id}" class="small material-icons modal-trigger btn-del">delete</i></td>
 			</tr>`;
 		$('#tablaDetalles tbody').append(markup);
+		$("tr[name='"+ id +"']").off('click', '#edit'+id);
+		$("tr[name='"+ id +"']").on('click', '#edit'+id, function() {
+			var td = $(this).parent()[0];
+			$(td).html("");
+			let mark = `
+			<div class="row">
+				<div class="col s8">
+					<input value="${cantidad}" placeholder="Cambiar cantidad" id="canti${id}" type="number" class="validate">
+				</div>
+				<div class="col s2">
+					<i id="save${id}" class="blue-text small material-icons modal-trigger btn-save">save</i>
+				</div>
+			</div>
+			`;
+			$(td).append(mark);
+			$("tr[name='"+ id +"']").off('click', '#save'+id);
+			$("tr[name='"+ id +"']").on('click', '#save'+id, function() {
+				console.log($("#canti" + id));
+				cantidad = $("#canti" + id).val();
+				cants[id] = cantidad;
+				$(td).html("");
+				$(td).html(`${cants[id]} <i id="edit${id}" class="blue-text right small material-icons modal-trigger btn-del">edit</i>`);
+				calcularTotal();
+			});
+			
+			
+		});
 		
 		$("tr[name='"+ id +"']").on('click', '#del'+id, function() {
 			//remover
